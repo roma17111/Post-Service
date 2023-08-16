@@ -33,4 +33,27 @@
             <column name="name"/>
         </createIndex>
     </changeSet>
+
+    <changeSet id="2.create-table-status" author="roman">
+        <preConditions>
+            <not>
+                <tableExists tableName="post_statuses"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="post_statuses">
+            <column name="status_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+       <createIndex tableName="post_statuses" indexName="DATE_INDEX">
+           <column name="date"></column>
+       </createIndex>
+    </changeSet>
 </databaseChangeLog>
