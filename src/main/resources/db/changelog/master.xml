@@ -7,4 +7,30 @@
     <changeSet id="0" author="admin">
 
     </changeSet>
+
+    <changeSet id="1" author="roman.create.post.1">
+        <preConditions>
+            <not>
+                <tableExists tableName="post_offices"/>
+            </not>
+        </preConditions>
+        <createTable tableName="post_offices">
+            <column name="office_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="index" type="VARCHAR(10)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(60)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="post_offices" indexName="INDEX_FROM_NAME">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>
