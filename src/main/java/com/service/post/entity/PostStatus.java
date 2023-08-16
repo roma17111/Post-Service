@@ -30,4 +30,10 @@ public class PostStatus {
     @Enumerated(EnumType.STRING)
     TypeOfOperations type;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "post_office",
+            referencedColumnName = "office_id",
+            nullable = false)
+    PostOffice postOffice;
+
 }

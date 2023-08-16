@@ -56,4 +56,17 @@
            <column name="date"></column>
        </createIndex>
     </changeSet>
+
+    <changeSet id="4.addCOlumn-to-status" author="roman">
+<addColumn tableName="post_statuses">
+    <column name="post_office" type="BIGINT">
+        <constraints nullable="false"/>
+    </column>
+</addColumn>
+        <addForeignKeyConstraint baseTableName="post_statuses"
+                                 baseColumnNames="post_office"
+                                 constraintName="POST_OFFICE_COLUMN"
+                                 referencedTableName="post_offices"
+                                 referencedColumnNames="office_id"/>
+    </changeSet>
 </databaseChangeLog>
