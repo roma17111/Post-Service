@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -38,5 +39,13 @@ public class PostDelivery {
             cascade = CascadeType.ALL)
     @JoinColumn(name = "status_id")
     List<PostStatus> statuses;
+
+    public void addStatusToPost(PostStatus status) {
+        if (statuses == null) {
+            statuses = new ArrayList<>();
+        } else {
+            statuses.add(status);
+        }
+    }
 
 }
