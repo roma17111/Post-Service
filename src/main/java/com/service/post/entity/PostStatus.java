@@ -2,10 +2,7 @@ package com.service.post.entity;
 
 import com.service.post.entity.enums.TypeOfOperations;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
@@ -13,6 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "post_statuses")
@@ -21,7 +19,7 @@ public class PostStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "status_id", nullable = false)
-    long id;
+    long statusId;
 
     @Column(name = "date", nullable = false)
     LocalDateTime date;

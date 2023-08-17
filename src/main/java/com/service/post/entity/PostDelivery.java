@@ -1,5 +1,6 @@
 package com.service.post.entity;
 
+import com.service.post.entity.dto.PostRegisterDto;
 import com.service.post.entity.enums.TypeOfPostDelivery;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder(toBuilder = true)
 @Entity
 @Table(name = "posts")
 @ToString(exclude = "statuses")
@@ -20,7 +22,7 @@ public class PostDelivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
-    long id;
+    long postId;
 
     @Column(name = "type_of_posts", length = 15, nullable = false)
     @Enumerated(EnumType.STRING)
@@ -37,7 +39,6 @@ public class PostDelivery {
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    @JoinColumn(name = "status_id")
     List<PostStatus> statuses;
 
     public void addStatusToPost(PostStatus status) {
@@ -47,5 +48,6 @@ public class PostDelivery {
             statuses.add(status);
         }
     }
+
 
 }

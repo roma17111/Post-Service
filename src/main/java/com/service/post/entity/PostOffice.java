@@ -1,16 +1,14 @@
 package com.service.post.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "post_offices")
 public class PostOffice {

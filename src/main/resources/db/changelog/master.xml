@@ -53,7 +53,7 @@
             </column>
         </createTable>
        <createIndex tableName="post_statuses" indexName="DATE_INDEX">
-           <column name="date"></column>
+           <column name="date"/>
        </createIndex>
     </changeSet>
 
@@ -94,19 +94,22 @@
             <column name="name" type="VARCHAR(16)">
                 <constraints nullable="false"/>
             </column>
-            <column name="status_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
 
         <createIndex tableName="posts" indexName="NAME_INDEX">
             <column name="name"/>
         </createIndex>
+    </changeSet>
 
-        <addForeignKeyConstraint baseTableName="posts"
-                                 baseColumnNames="status_id"
-                                 constraintName="STATUSES_HISTORY"
-                                 referencedTableName="post_statuses"
-                                 referencedColumnNames="status_id"/>
+    <changeSet id="6.create-posts-statuses" author="roman">
+        <preConditions>
+            <not>
+                <tableExists tableName="posts_statuses"/>
+            </not>
+        </preConditions>
+        <createTable tableName="posts_statuses">
+            <column name="post_delivery_post_id" type="BIGINT"/>
+            <column name="statuses_status_id" type="BIGINT"/>
+        </createTable>
     </changeSet>
 </databaseChangeLog>
